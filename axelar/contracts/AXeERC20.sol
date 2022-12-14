@@ -25,18 +25,34 @@ pragma solidity ^0.8.9;
  * allowances. See {IERC20-approve}.
  */
   import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
-contract AXeERC20  is ERC20 {
- 
+   import '@axelar-network/axelar-gmp-sdk-solidity/contracts/executables/AxelarExecutable.sol';
 
-    /**
+contract AXeERC20  is ERC20 , AxelarExecutable {
+ 
+     /**
      * @dev Sets the values for {name}, {symbol}, and {decimals}.
      */
     constructor(
         string memory name_,
-        string memory symbol_
-    ) ERC20(name_,symbol_){
+        string memory symbol_,
+        address gateway_
+    ) ERC20(name_,symbol_) AxelarExecutable (gateway_){
     
        _mint(msg.sender, 10 ether);
+       
+    }
+ function decimals() public view  override returns (uint8) {
+        return 6;
     }
 
+function crossSwap( string calldata destinationChain,
+        string calldata destinationAddress, uint256 amount)  external returns (bool){
+     gateway.sendToken(  destinationChain,
+         destinationAddress,
+        symbol(),
+       amount);
+
+       
+    
+}
 }
