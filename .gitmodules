@@ -1,0 +1,3 @@
+[submodule "evm-tokenbridge/chains/evm/lib/openzeppelin-contracts"]
+	path = evm-tokenbridge/chains/evm/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
