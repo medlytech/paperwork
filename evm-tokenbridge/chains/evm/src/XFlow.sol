@@ -84,11 +84,11 @@ function goNextStep() public onlyAuthor{
     if (isCrossChain){
     
       nonce += 1;
-        return token_bridge.transferTokens(TKN_address,  stepPayment[currentStep], receipientChainId, recipient, 0, nonce);
- 
+        token_bridge.transferTokens(TKN_address,  stepPayment[currentStep], receipientChainId, recipient, 0, nonce);
+    }
      currentStep = stepTree[currentStep];
     emit NextStep(currentStep,  stepTree[currentStep],msg.sender);
-    }
+    
 }
 // wormhole
 
